@@ -35,5 +35,7 @@ export const validate = (
     response: Response,
     next: NextFunction
 ) => {
+    console.log(request);
+    console.log('⭐️ 当前用户：', request.user);
     response.sendStatus(200);
 };
