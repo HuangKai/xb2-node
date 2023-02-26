@@ -18,3 +18,4 @@ npm-debug.log*
 
 # App
 .env*
+config/*.key
