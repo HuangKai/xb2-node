@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import _ from 'lodash';
-import { getPosts, createPost, updatePost } from './post.service';
+import { getPosts, createPost, updatePost, deletePost } from './post.service';
 
 /**
  * 内容列表
@@ -60,3 +60,24 @@ export const update = async (
 		next(error);
 	}
 }
+
+
+/**
+ * 删除内容
+ */
+export const destory = async (
+	request: Request,
+	response: Response,
+	next: NextFunction
+) => {
+	// 获取内容
+	const { postId } = request.params;
+
+	// 删除内容
+	try {
+		const data = await deletePost(parseInt(postId, 10));
+		response.send(data);
+	} catch (error) {
+		next(error);
+	}
+};
