@@ -39,6 +39,10 @@ export const defaultErrorHandler = (
 			statusCode = 400;
 			message = '请提供用密码';
 			break;
+		case "USER_ALREADY_EXIST":
+			statusCode = 409;
+			message = '用户名已经被占用';
+			break;
 		default:
 			statusCode = 500;
 			message = '服务暂时除了点问题 ~~ 🌴';
