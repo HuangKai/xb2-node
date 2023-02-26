@@ -10,6 +10,8 @@
   "author": "Kay",
   "license": "MIT",
   "dependencies": {
+    "@types/bcrypt": "^5.0.0",
+    "bcrypt": "^4.0.1",
     "express": "^4.17.1",
     "lodash": "^4.17.15",
     "mysql2": "^2.1.0"

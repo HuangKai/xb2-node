@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import * as userService from './user.service';
+import bcrypt from 'bcrypt';
 
 /**
  * 验证用户数据
@@ -21,6 +22,24 @@ export const validateUserData = async (
     // 验证用户名
     const user = await userService.getUserByName(name);
     if (user) return next(new Error('USER_ALREADY_EXIST'));
+
+    // 下一步
+    next();
+};
+
+/**
+ * Hash 密码
+ */
+export const hashPassword = async (
+    requst: Request,
+    response: Response,
+    next: NextFunction
+) => {
+    // 准备数据
+    const { password } = requst.body;
+
+    // Hash 密码
+    requst.body.password = await bcrypt.hash(password, 10);
 
     // 下一步
     next();
