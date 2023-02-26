@@ -80,11 +80,7 @@ interface AccessControlOptions {
 }
 
 export const accessControl = (options: AccessControlOptions) => {
-    return async (
-        request: Request,
-        response: Response,
-        next: NextFunction
-    ) => {
+    return async (request: Request, response: Response, next: NextFunction) => {
         console.log('👧🏻 访问控制');
 
         // 解构选项
@@ -98,7 +94,7 @@ export const accessControl = (options: AccessControlOptions) => {
 
         // 准备资源
         const resourceParam = Object.keys(request.params)[0];
-        const resourceType = resourceParam.replace('ID', '');
+        const resourceType = resourceParam.replace('Id', '');
         const resourceId = parseInt(request.params[resourceParam], 10);
 
         // 检查资源拥有权
