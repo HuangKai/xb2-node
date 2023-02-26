@@ -43,9 +43,13 @@ export const defaultErrorHandler = (
 			statusCode = 409;
 			message = '用户名已经被占用';
 			break;
+		case "USER_DOES_NOT_EXIST":
+			statusCode = 400;
+			message = '用户不存在';
+			break;
 		default:
 			statusCode = 500;
-			message = '服务暂时除了点问题 ~~ 🌴';
+			message = '服务暂时出了点问题 ~~ 🌴';
 			break;
 	}
 	/**
