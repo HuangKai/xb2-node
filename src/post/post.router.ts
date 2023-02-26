@@ -1,6 +1,6 @@
 import express from 'express';
 import * as postController from './post.controller';
-import { requestUrl } from '../app/app.middleware'
+import { requestUrl } from '../app/app.middleware';
 
 const router = express.Router();
 
@@ -10,6 +10,18 @@ const router = express.Router();
 router.get('/posts', requestUrl, postController.index);
 
 /**
+ * 创建内容
+ */
+router.post('/posts', postController.store);
+
+
+/**
+ * 更新内容
+ */
+router.patch('/posts/:postId', postController.update);
+
+/**
  * 导出路由
  */
 export default router;
+
