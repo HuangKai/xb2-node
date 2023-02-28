@@ -11,6 +11,7 @@ npm-debug.log*
 
 #IDE - VSCode
 .vscode/*
+!.vscode/*.code-snippets
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
@@ -19,3 +20,4 @@ npm-debug.log*
 # App
 .env*
 config/*.key
+/uploads
