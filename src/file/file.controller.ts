@@ -25,24 +25,14 @@ export const store = async (
 		'size',
 	]);
 
-<<<<<<< HEAD
-    try {
-        // 保存文件信息
-        const data = await createFile({
-            ...fileInfo,
-            userId,
-            postId: parseInt(`${postId}`, 10),
-            ...request.fileMetaData,
-        });
-=======
 	try {
 		// 保存文件信息
 		const data = await createFile({
 			...fileInfo,
 			userId,
 			postId: parseInt(`${postId}`, 10),
+			...request.fileMetaData,
 		});
->>>>>>> tags
 
 		// 做出响应
 		response.status(201).send(data);
@@ -66,45 +56,6 @@ export const serve = async (
 		// 查找文件信息
 		const file = await findFileByName(parseInt(fileId, 10));
 
-<<<<<<< HEAD
-        // 做出响应
-        response.sendFile(file.filename, {
-            root: 'uploads',
-            headers: {
-                'Content-type': file.mimetype,
-            },
-        });
-
-    } catch (error) {
-        next(error);
-    }
-};
-
-/**
- * 文件信息
- */
-export const metadata = async (
-    request: Request,
-    response: Response,
-    next: NextFunction
-) => {
-    // 文件 ID 
-    const { fileId } = request.params;
-
-    try {
-        // 查询文件数据
-        const file = await findFileByName(parseInt(fileId, 10));
-
-        // 准备响应数据
-        const data = _.pick(file, ['id', 'size', 'width', 'height', 'metadata']);
-
-        // 做出响应
-        response.send(data);
-    } catch (error) {
-        next();
-    }
-};
-=======
 		// 做出响应
 		response.sendFile(file.filename, {
 			root: 'uploads',
@@ -112,8 +63,33 @@ export const metadata = async (
 				'Content-type': file.mimetype,
 			},
 		});
+
 	} catch (error) {
 		next(error);
 	}
 };
->>>>>>> tags
+
+/**
+ * 文件信息
+ */
+export const metadata = async (
+	request: Request,
+	response: Response,
+	next: NextFunction
+) => {
+	// 文件 ID 
+	const { fileId } = request.params;
+
+	try {
+		// 查询文件数据
+		const file = await findFileByName(parseInt(fileId, 10));
+
+		// 准备响应数据
+		const data = _.pick(file, ['id', 'size', 'width', 'height', 'metadata']);
+
+		// 做出响应
+		response.send(data);
+	} catch (error) {
+		next();
+	}
+};
