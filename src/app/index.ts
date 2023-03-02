@@ -5,6 +5,7 @@ import userRouter from '../user/user.router';
 import authRouter from '../auth/auth.router';
 import fileRouter from '../file/file.router';
 import tagRouter from '../tag/tag.router';
+import commentRouter from '../comment/comment.router';
 
 /**
  * 创建应用
@@ -19,7 +20,14 @@ app.use(express.json());
 /**
  * 路由
  */
-app.use(postRouter, userRouter, authRouter, fileRouter, tagRouter);
+app.use(
+    postRouter,
+    userRouter,
+    authRouter,
+    fileRouter,
+    tagRouter,
+    commentRouter
+);
 
 /**
  * 默认异常处理器
