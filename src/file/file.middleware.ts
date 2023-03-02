@@ -7,13 +7,14 @@ import { imageResizer } from './file.service';
  * 创建一个 Multer
  */
 const fileUpload = multer({
-    dest: 'uploads/',
+	dest: 'uploads/',
 });
 
 /**
  * 文件拦截器
  */
 export const fileInterceptor = fileUpload.single('file');
+<<<<<<< HEAD
 
 /**
  * 文件处理
@@ -51,3 +52,5 @@ export const fileProcessor = async (
     // 下一步
     next();
 };
+=======
+>>>>>>> tags

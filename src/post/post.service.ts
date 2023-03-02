@@ -78,3 +78,57 @@ export const deletePost = async (postId: number) => {
 	// 提供数据
 	return data;
 };
+
+/**
+ * 保存内容标签
+ */
+export const createPostTag = async (postId: number, tagId: number) => {
+	// 准备查询
+	const statement = `
+		INSERT INTO post_tag (postId, tagId)
+		VALUES (?, ?)
+	`;
+
+	// 执行查询
+	const [data] = await connection.promise().query(statement, [postId, tagId]);
+
+	// 提供数据
+	return data;
+};
+
+/**
+ * 检查内容标签
+ */
+export const postHasTag = async (postId: number, tagId: number) => {
+	// 准备查询
+	const statement = `
+	SELECT * FROM post_tag
+	WHERE postId=? AND tagId=?
+   `;
+
+	// 执行查询
+	const [data] = await connection.promise().query(statement, [postId, tagId]);
+
+	// 提供数据
+	return data[0] ? true : false;
+};
+
+/**
+ * 移除内容标签
+ */
+export const deletePostTag = async (
+	postId: number,
+	tagId: number
+) => {
+	// 准备查询
+	const statement = `
+	DELETE FROM post_tag
+	WHERE postId = ? AND tagId = ?
+   `;
+
+	// 执行查询
+	const [data] = await connection.promise().query(statement, [postId, tagId]);
+	console.log('----------: ', [data]);
+	// 提供数据
+	return data;
+};
