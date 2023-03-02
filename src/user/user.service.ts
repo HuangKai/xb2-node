@@ -5,35 +5,35 @@ import { UserModel } from './user.model';
  * 创建用户
  */
 export const createUser = async (user: UserModel) => {
-    // 准备查询
-    const statement = `
+	// 准备查询
+	const statement = `
         INSERT INTO user
         SET ?
     `;
 
-    // 执行查询
-    const [data] = await connection.promise().query(statement, user);
+	// 执行查询
+	const [data] = await connection.promise().query(statement, user);
 
-    // 提供数据
-    return data;
+	// 提供数据
+	return data;
 };
 
 /**
  * 按用户名查找用户
  */
 interface GetUserOptions {
-    password?: boolean;
+	password?: boolean;
 }
 
 export const getUserByName = async (
-    name: string,
-    options: GetUserOptions = {}
+	name: string,
+	options: GetUserOptions = {},
 ) => {
-    // 准备选项
-    const { password } = options;
+	// 准备选项
+	const { password } = options;
 
-    // 准备查询
-    const statement = `
+	// 准备查询
+	const statement = `
         SELECT 
         id, 
         name
@@ -42,9 +42,9 @@ export const getUserByName = async (
         WHERE name = ?
     `;
 
-    // 执行查询
-    const [data] = await connection.promise().query(statement, name);
+	// 执行查询
+	const [data] = await connection.promise().query(statement, name);
 
-    // 提供数据
-    return data[0];
+	// 提供数据
+	return data[0];
 };

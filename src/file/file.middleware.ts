@@ -5,7 +5,7 @@ import multer from 'multer';
  * 创建一个 Multer
  */
 const fileUpload = multer({
-    dest: 'uploads/',
+	dest: 'uploads/',
 });
 
 /**
