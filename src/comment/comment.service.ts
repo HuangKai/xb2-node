@@ -23,7 +23,7 @@ export const createComment = async (
 /**
  * 检查评论是否为回复评论
  */
-export const isReplayComment = async (
+export const isReplyComment = async (
     commentId: number
 ) => {
     // 准备查询
