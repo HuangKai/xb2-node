@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { createComment, isReplyComment, updateComment } from './comment.service';
+import { createComment, deleteComment, isReplyComment, updateComment } from './comment.service';
 
 
 /**
@@ -91,6 +91,28 @@ export const update = async (
     try {
         // 修改评论
         const data = await updateComment(comment);
+
+        // 做出响应
+        response.send(data);
+    } catch (error) {
+        next(error);
+    }
+};
+
+/**
+ * 删除评论
+ */
+export const destory = async (
+    request: Request,
+    response: Response,
+    next: NextFunction
+) => {
+    // 准备数据
+    const { commentId } = request.params;
+
+    try {
+        // 删除评论
+        const data = await deleteComment(parseInt(commentId, 10));
 
         // 做出响应
         response.send(data);
