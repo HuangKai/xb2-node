@@ -6,6 +6,7 @@ import authRouter from '../auth/auth.router';
 import fileRouter from '../file/file.router';
 import tagRouter from '../tag/tag.router';
 import commentRouter from '../comment/comment.router';
+import avatarRouter from '../avatar/avatar.router';
 
 /**
  * 创建应用
@@ -26,7 +27,8 @@ app.use(
     authRouter,
     fileRouter,
     tagRouter,
-    commentRouter
+    commentRouter,
+    avatarRouter,
 );
 
 /**
