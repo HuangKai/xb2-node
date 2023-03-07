@@ -1,6 +1,8 @@
+import path from 'path';
+import fs from 'fs';
 import { Request, Response, NextFunction } from 'express';
 import _ from 'lodash';
-import { createAvatar } from './avatar.service';
+import { createAvatar, findAvatarByUserId } from './avatar.service';
 
 /**
  * 上传头像
@@ -28,6 +30,69 @@ export const store = async (
 
         // 做出响应
         response.status(201).send(data);
+    } catch (error) {
+        next(error);
+    }
+};
+
+/**
+ * 头像服务
+ */
+export const serve = async (
+    request: Request,
+    response: Response,
+    next: NextFunction
+) => {
+    // 用户 ID
+    const { userId } = request.params;
+
+    try {
+        // 查找头像信息
+        const avatar = await findAvatarByUserId(parseInt(userId, 10));
+        if (!avatar) {
+            throw new Error('FILE_NOT_FOUND');
+        }
+
+        // 要提供的头像尺寸
+        const { size } = request.query;
+
+        // 文件名与目录
+        let filename = avatar.filename;
+        let root = path.join('uploads', 'avatar');
+        let resized = 'resized';
+
+        if (size) {
+            // 可用的头像尺寸
+            const imageSizes = ['large', 'medium', 'small'];
+
+            // 测试可用的头像尺寸
+            if (!imageSizes.some(item => item == size)) {
+                throw Error('FILE_NOT_FOUND');
+            }
+
+            // 检查文件是否存在
+            const fileExist = fs.existsSync(
+                path.join(root, resized, `${filename}-${size}`),
+            );
+            if (!fileExist) {
+                throw new Error('FILE_NOT_FOUND');
+            }
+
+            // 设置文件名与根目录
+            if (fileExist) {
+                filename = `${filename}-${size}`;;
+                root = path.join(root, resized);
+            }
+
+        }
+        console.log('mimetype: ', avatar.mimetype);
+        // 做出响应
+        response.sendFile(filename, {
+            root,
+            headers: {
+                'Content-type': avatar.mimetype,
+            }
+        });
     } catch (error) {
         next(error);
     }
