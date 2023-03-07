@@ -57,7 +57,6 @@ export const getPosts = async (options: GetPostsOptions) => {
 	`;
 
 	const [data] = await connection.promise().query(statement, params);
-	console.log(data);
 	return data;
 };
 
