@@ -111,8 +111,8 @@ export const getComments = async (options: GetCommentOptions) => {
             ${sqlFragment.post}
         FROM 
             comment
-            ${sqlFragment.leftJoinUser}
-            ${sqlFragment.leftJoinPost}
+        ${sqlFragment.leftJoinUser}
+        ${sqlFragment.leftJoinPost}
         WHERE
             ${filter.sql}
         GROUP BY
