@@ -166,4 +166,39 @@ export const getCommentsTotalCount = async (options: GetCommentsOptions) => {
 
     // 提供数据
     return data[0].total;
+};
+
+/**
+ * 评论回复列表
+ */
+interface GetCommentRepliesOptions {
+    commentId: number
 }
+
+const GetCommentReplies = async (
+    options: GetCommentRepliesOptions
+) => {
+    // 解构选项
+    const { commentId } = options;
+
+    // 准备查询
+    const statement = `
+        SELECT
+            comment.id,
+            comment.content,
+            ${sqlFragment.user}
+        FROM
+            comment
+        ${sqlFragment.leftJoinUser}
+        WHERE
+            comment.parentId = ?
+        GROUP BY
+            comment.id
+   `;
+
+    // 执行查询
+    const [data] = await connection.promise().query(statement, commentId);
+
+    // 提供数据
+    return data;
+};
