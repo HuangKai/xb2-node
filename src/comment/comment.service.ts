@@ -175,7 +175,7 @@ interface GetCommentRepliesOptions {
     commentId: number
 }
 
-const GetCommentReplies = async (
+export const getCommentReplies = async (
     options: GetCommentRepliesOptions
 ) => {
     // 解构选项
