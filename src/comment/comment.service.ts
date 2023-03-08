@@ -109,6 +109,7 @@ export const getComments = async (options: GetCommentOptions) => {
             comment.content,
             ${sqlFragment.user},
             ${sqlFragment.post}
+            ${filter.name == 'userReplied' ? `, ${sqlFragment.repliedComment}` : ''}
         FROM 
             comment
         ${sqlFragment.leftJoinUser}
@@ -120,7 +121,6 @@ export const getComments = async (options: GetCommentOptions) => {
         ORDER BY
             comment.id DESC
    `;
-
     // 执行查询
     const [data] = await connection.promise().query(statement, params);
 
