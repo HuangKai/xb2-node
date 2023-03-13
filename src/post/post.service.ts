@@ -25,7 +25,11 @@ export const getPosts = async (options: GetPostsOptions) => {
 	// const statement = `
 	// 	SELECT * FROM post
 	// `;
-	const { sort, filter, pagination: { limit, offset } } = options;
+	const {
+		sort,
+		filter,
+		pagination: { limit, offset },
+	} = options;
 
 	// SQL 参数
 	let params: Array<any> = [limit, offset];
@@ -34,7 +38,6 @@ export const getPosts = async (options: GetPostsOptions) => {
 	if (filter.param) {
 		params = [filter.param, ...params];
 	}
-
 
 	const statement = `
 		SELECT 
@@ -151,10 +154,7 @@ export const postHasTag = async (postId: number, tagId: number) => {
 /**
  * 移除内容标签
  */
-export const deletePostTag = async (
-	postId: number,
-	tagId: number
-) => {
+export const deletePostTag = async (postId: number, tagId: number) => {
 	// 准备查询
 	const statement = `
 	DELETE FROM post_tag
@@ -171,9 +171,7 @@ export const deletePostTag = async (
 /**
  * 统计内容数量
  */
-export const getPostsTotalCount = async (
-	options: GetPostsOptions
-) => {
+export const getPostsTotalCount = async (options: GetPostsOptions) => {
 	const { filter } = options;
 
 	// SQL 参数
@@ -201,9 +199,7 @@ export const getPostsTotalCount = async (
 /**
  * 按 ID 调取内容
  */
-export const getPostById = async (
-	postId: number
-) => {
+export const getPostById = async (postId: number) => {
 	// 准备查询
 	const statement = `
 		SELECT

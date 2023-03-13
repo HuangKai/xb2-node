@@ -26,10 +26,7 @@ interface GetUserOptions {
 }
 
 export const getUser = (condition: string) => {
-	return async (
-		param: string | number,
-		options: GetUserOptions = {},
-	) => {
+	return async (param: string | number, options: GetUserOptions = {}) => {
 		// 准备选项
 		const { password } = options;
 
@@ -71,10 +68,7 @@ export const getUserById = getUser('user.id');
 /**
  * 更新用户
  */
-export const updateUser = async (
-	userId: number,
-	userData: UserModel
-) => {
+export const updateUser = async (userId: number, userData: UserModel) => {
 	// 准备查询
 	const statement = `
 		UPDATE user

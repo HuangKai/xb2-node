@@ -12,7 +12,11 @@ router.post('/post/:postId/like', authGuard, likeController.storeUserLikePost);
 /**
  * 取消点赞内容
  */
-router.delete('/post/:postId/like', authGuard, likeController.destoryUserLikePost);
+router.delete(
+	'/post/:postId/like',
+	authGuard,
+	likeController.destoryUserLikePost,
+);
 
 /**
  * 导出路由

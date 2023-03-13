@@ -23,14 +23,14 @@ app.use(express.json());
  * 路由
  */
 app.use(
-    postRouter,
-    userRouter,
-    authRouter,
-    fileRouter,
-    tagRouter,
-    commentRouter,
-    avatarRouter,
-    likeRouter,
+	postRouter,
+	userRouter,
+	authRouter,
+	fileRouter,
+	tagRouter,
+	commentRouter,
+	avatarRouter,
+	likeRouter,
 );
 
 /**

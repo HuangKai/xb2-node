@@ -9,11 +9,11 @@ const router = express.Router();
  * 上传头像
  */
 router.post(
-    '/avatar',
-    authGuard,
-    avatarInterceptor,
-    avatarProcessor,
-    avatarController.store
+	'/avatar',
+	authGuard,
+	avatarInterceptor,
+	avatarProcessor,
+	avatarController.store,
 );
 
 /**

@@ -8,7 +8,13 @@ const router = express.Router();
 /**
  * 上传文件
  */
-router.post('/files', authGuard, fileInterceptor, fileProcessor, fileController.store);
+router.post(
+	'/files',
+	authGuard,
+	fileInterceptor,
+	fileProcessor,
+	fileController.store,
+);
 
 /**
  * 文件服务

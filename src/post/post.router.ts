@@ -9,7 +9,13 @@ const router = express.Router();
 /**
  * 内容列表
  */
-router.get('/posts', sort, filter, paginate(POST_PER_PAGE), postController.index);
+router.get(
+	'/posts',
+	sort,
+	filter,
+	paginate(POST_PER_PAGE),
+	postController.index,
+);
 
 /**
  * 创建内容
@@ -43,7 +49,7 @@ router.post(
 	'/posts/:postId/tag',
 	authGuard,
 	accessControl({ possession: true }),
-	postController.storePostTag
+	postController.storePostTag,
 );
 
 /**
@@ -53,7 +59,7 @@ router.delete(
 	'/posts/:postId/tag',
 	authGuard,
 	accessControl({ possession: true }),
-	postController.destory
+	postController.destory,
 );
 
 /**

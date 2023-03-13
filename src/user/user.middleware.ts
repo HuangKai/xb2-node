@@ -73,7 +73,7 @@ export const validateUpdateUserData = async (
 		const matched = await bcrypt.compare(validate.password, user.password);
 
 		if (!matched) {
-			return next(new Error('PASSWORD_DOES_NOT_MATCHED'))
+			return next(new Error('PASSWORD_DOES_NOT_MATCHED'));
 		}
 
 		// 检查用户名是否被占用
@@ -96,7 +96,6 @@ export const validateUpdateUserData = async (
 			// HASH 用户更新密码
 			request.body.update.password = await bcrypt.hash(update.password, 10);
 		}
-
 	} catch (error) {
 		return next(error);
 	}

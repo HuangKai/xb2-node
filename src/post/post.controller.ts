@@ -9,7 +9,7 @@ import {
 	postHasTag,
 	deletePostTag,
 	getPostsTotalCount,
-	getPostById
+	getPostById,
 } from './post.service';
 import { TagModel } from '../tag/tag.model';
 import { getTagByName, createTag } from '../tag/tag.service';
@@ -164,7 +164,7 @@ export const storePostTag = async (
 export const destoryPostTag = async (
 	request: Request,
 	response: Response,
-	next: NextFunction
+	next: NextFunction,
 ) => {
 	// 准备数据
 	const { postId } = request.params;
@@ -184,7 +184,7 @@ export const destoryPostTag = async (
 export const show = async (
 	request: Request,
 	response: Response,
-	next: NextFunction
+	next: NextFunction,
 ) => {
 	// 准备数据
 	const { postId } = request.params;

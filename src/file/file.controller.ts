@@ -63,7 +63,6 @@ export const serve = async (
 				'Content-type': file.mimetype,
 			},
 		});
-
 	} catch (error) {
 		next(error);
 	}
@@ -75,9 +74,9 @@ export const serve = async (
 export const metadata = async (
 	request: Request,
 	response: Response,
-	next: NextFunction
+	next: NextFunction,
 ) => {
-	// 文件 ID 
+	// 文件 ID
 	const { fileId } = request.params;
 
 	try {

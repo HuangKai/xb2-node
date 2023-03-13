@@ -2,20 +2,20 @@
  * 查询片段
  */
 export const sqlFragment = {
-    user: `
+	user: `
         JSON_OBJECT(
             'id', user.id,
             'name', user.name,
             'avatar', IF(COUNT(avatar.id), 1, null)
         ) as user
     `,
-    leftJoinUser: `
+	leftJoinUser: `
         LEFT JOIN user
             ON user.id = post.userId
         LEFT JOIN avatar
             ON user.id = avatar.userId
     `,
-    totalComments: `
+	totalComments: `
         (
             SELECT
                 COUNT(comment.id)
@@ -25,7 +25,7 @@ export const sqlFragment = {
                 comment.postId = post.id
         ) as totalComments
     `,
-    leftJoinOneFile: `
+	leftJoinOneFile: `
         LEFT JOIN LATERAL (
             SELECT *
             FROM file
@@ -34,7 +34,7 @@ export const sqlFragment = {
             LIMIT 1
         ) as file ON post.id = file.postId
     `,
-    file: `
+	file: `
         CAST(
             IF(
                 COUNT(file.id),
@@ -49,13 +49,13 @@ export const sqlFragment = {
             ) AS JSON
         ) as file
     `,
-    leftJoinTag: `
+	leftJoinTag: `
         LEFT JOIN
             post_tag ON post_tag.postId = post.id
         LEFT JOIN
             tag ON post_tag.tagId = tag.id
     `,
-    tags: `
+	tags: `
         CAST(
             IF(
                 COUNT(tag.id),
@@ -73,14 +73,14 @@ export const sqlFragment = {
             ) as JSON
         ) as tags
     `,
-    totalLikes: `
+	totalLikes: `
         (
             SELECT COUNT(user_like_post.postId)
             FROM user_like_post
             WHERE user_like_post.postId = post.id
         ) as totalLikes
     `,
-    innerJoinLikePost: `
+	innerJoinLikePost: `
         INNER JOIN user_like_post
             ON user_like_post.postId = post.id
     `,

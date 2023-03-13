@@ -21,26 +21,31 @@ router.post('/comments/:commentId/reply', authGuard, commentController.reply);
  * 修改评论
  */
 router.patch(
-    '/comments/:commentId',
-    authGuard,
-    accessControl({ possession: true }),
-    commentController.update
+	'/comments/:commentId',
+	authGuard,
+	accessControl({ possession: true }),
+	commentController.update,
 );
 
 /**
  * 删除评论
  */
 router.delete(
-    '/comments/:commentId',
-    authGuard,
-    accessControl({ possession: true }),
-    commentController.destory
+	'/comments/:commentId',
+	authGuard,
+	accessControl({ possession: true }),
+	commentController.destory,
 );
 
 /**
  * 评论列表
  */
-router.get('/comments', filter, paginate(COMMENT_PER_PAGE), commentController.index);
+router.get(
+	'/comments',
+	filter,
+	paginate(COMMENT_PER_PAGE),
+	commentController.index,
+);
 
 /**
  * 回复列表

@@ -28,7 +28,7 @@ export const store = async (
 export const show = async (
 	request: Request,
 	response: Response,
-	next: NextFunction
+	next: NextFunction,
 ) => {
 	// 准备数据
 	const { userId } = request.params;
@@ -54,7 +54,7 @@ export const show = async (
 export const update = async (
 	request: Request,
 	response: Response,
-	next: NextFunction
+	next: NextFunction,
 ) => {
 	// 准备数据
 	const { id } = request.user;
