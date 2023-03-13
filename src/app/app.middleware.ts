@@ -37,7 +37,7 @@ export const defaultErrorHandler = (
 			break;
 		case 'PASSWORD_IS_REQUIRED':
 			statusCode = 400;
-			message = '请提供用密码';
+			message = '请提供用户密码';
 			break;
 		case 'USER_ALREADY_EXIST':
 			statusCode = 409;
