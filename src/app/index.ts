@@ -8,6 +8,7 @@ import tagRouter from '../tag/tag.router';
 import commentRouter from '../comment/comment.router';
 import avatarRouter from '../avatar/avatar.router';
 import likeRouter from '../like/like.router';
+import appRouter from './app.router';
 
 /**
  * 创建应用
@@ -31,6 +32,7 @@ app.use(
 	commentRouter,
 	avatarRouter,
 	likeRouter,
+	appRouter,
 );
 
 /**
