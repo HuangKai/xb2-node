@@ -101,3 +101,53 @@ describe('测试用户账户接口', () => {
         expect(response.status).toBe(404);
     })
 });
+
+/**
+ * 更新用户
+ */
+describe('测试更新用户接口', () => {
+    test('更新用户时需要验证用户身份', async () => {
+        // 请求接口
+        const response = await request(app).patch('/users');
+
+        // 做出断言
+        expect(response.status).toBe(401);
+    });
+
+    test('更新用户数据', async () => {
+        // 签发令牌
+        const token = signToken({
+            payload: { id: testUserCreated.id, name: testUserCreated.name },
+        });
+
+        // 请求接口
+        const response = await request(app)
+            .patch('/users')
+            .set('Authorization', `Bearer ${token}`)
+            .send({
+                validate: {
+                    password: testUser.password,
+                },
+                update: {
+                    name: testUserUpdated.name,
+                    password: testUserCreated.password,
+                },
+            });
+        console.log('response: ', response);
+
+        // 调取用户
+        const user = await getUserById(testUserCreated.id, { password: true });
+
+        // 对比密码
+        const matched = await bcrypt.compare(
+            testUserUpdated.password,
+            user.password,
+        );
+
+        // 做出断言
+        expect(response.status).toBe(200);
+        expect(matched).toBeTruthy();
+        expect(user.name).toBe(testUserUpdated.name);
+    });
+
+});
