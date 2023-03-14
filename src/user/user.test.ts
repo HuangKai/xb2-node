@@ -15,7 +15,7 @@ const testUser: UserModel = {
 };
 
 const testUserUpdated: UserModel = {
-    name: 'xb2-test-user-name',
+    name: 'xb2-test-user-new-name',
     password: '222222',
 };
 
@@ -80,8 +80,8 @@ describe('测试创建用户接口', () => {
 describe('测试用户账户接口', () => {
     test('响应里应该包含指定的属性', async () => {
         // 请求接口
-        const response = await request(app).get('/users/${testUserCreated.id');
-        console.log('response: ', response);
+        const response = await request(app).get(`/users/${testUserCreated.id}`);
+        // console.log('response: ', response);
 
         // 做出断言
         expect(response.status).toBe(200);
@@ -130,10 +130,10 @@ describe('测试更新用户接口', () => {
                 },
                 update: {
                     name: testUserUpdated.name,
-                    password: testUserCreated.password,
+                    password: testUserUpdated.password,
                 },
             });
-        console.log('response: ', response);
+        // console.log('response: ', response);
 
         // 调取用户
         const user = await getUserById(testUserCreated.id, { password: true });

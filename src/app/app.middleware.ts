@@ -48,7 +48,7 @@ export const defaultErrorHandler = (
 			message = '用户不存在';
 			break;
 			break;
-		case 'PASSWORD_DOSE_NOT_MATCHED':
+		case 'PASSWORD_DOES_NOT_MATCHED':
 			statusCode = 400;
 			message = '密码不对';
 			break;
@@ -90,7 +90,7 @@ export const defaultErrorHandler = (
 			break;
 		default:
 			statusCode = 500;
-			message = '要修改的密码不能与原密码一样';
+			message = '服务暂时出了点问题 ~~ 🌴';
 			break;
 	}
 	/**
