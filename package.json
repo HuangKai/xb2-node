@@ -6,7 +6,9 @@
     "start:dev": "tsc-watch --onSuccess \"node dist/main.js\"",
     "format": "prettier --write \"src/**/*.ts\"",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "prebuild": "rimraf dist",
+    "build": "tsc -p tsconfig.build.json"
   },
   "author": "Kay",
   "license": "MIT",
@@ -32,6 +34,7 @@
     "dotenv": "^16.0.3",
     "jest": "^29.5.0",
     "prettier": "^1.19.1",
+    "rimraf": "^4.4.0",
     "supertest": "^4.0.2",
     "ts-jest": "^29.0.5",
     "tsc-watch": "^4.2.3",
