@@ -22,6 +22,7 @@ export const index = async (
 	response: Response,
 	next: NextFunction,
 ) => {
+	console.log('----------request.user: ', request.user);
 	try {
 		// 统计内容数量
 		const totalCount = await getPostsTotalCount({ filter: request.filter });
@@ -52,6 +53,7 @@ export const store = async (
 	response: Response,
 	next: NextFunction,
 ) => {
+	console.log('----------request.user: ', request.user);
 	// 准备数据
 	const { title, content } = request.body;
 	const { id: userId } = request.user;
