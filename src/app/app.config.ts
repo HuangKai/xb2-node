@@ -34,3 +34,8 @@ export const POST_PER_PAGE = parseInt(process.env['POST_PER_PAGE'], 10);
  * 评论分页
  */
 export const COMMENT_PER_PAGE = parseInt(process.env['COMMENT_PER_PAGE'], 10);
+
+/**
+ * CORS
+ */
+export const ALLOW_ORIGIN = process.env.ALLOW_ORIGIN;
